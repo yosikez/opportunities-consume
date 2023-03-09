@@ -13,6 +13,7 @@ type Resource struct {
 	Level           string    `gorm:"column:level" json:"level"`
 	Ctc             float64   `gorm:"column:ctc" json:"ctc"`
 	ProjectDuration int64     `gorm:"column:project_duration" json:"project_duration"`
+	Opportunity Opportunity
 	OpportunityId   uint      `gorm:"foreignKey:Opportunity;OnUpdate:CASCADE;OnDelete:CASCADE" json:"opportunity_id"`
 	CreatedAt       time.Time `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt       time.Time `gorm:"column:updated_at" json:"updated_at"`

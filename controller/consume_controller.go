@@ -24,7 +24,7 @@ func NewConsumeController(rmq *config.RabbitMQConnection, rmqCfg *config.RabbitM
 }
 
 func (cs *ConsumeController) StartConsumer() {
-	go cs.rmqDeclare("opportunity_create_queue")
+	cs.rmqDeclare("opportunity_create_queue")
 }
 
 func (cs *ConsumeController) rmqDeclare(queueName string) {

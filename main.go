@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"sync"
 
 	"github.com/yosikez/opportunities-consume/controller"
 	"github.com/yosikez/opportunities-consume/database"
@@ -40,12 +41,14 @@ func main() {
 
 	consumeController := controller.NewConsumeController(rmq, rmqCfg)
 
+	var wg sync.WaitGroup
+	wg.Add(1)
 
-	forever := make(chan struct{})
-	go func ()  {
+	go func() {
+		defer wg.Done()
 		consumeController.StartConsumer()
 	}()
 
 	log.Printf("Waiting for incoming data from RabbitMQ....")
-	<-forever
+	wg.Wait()
 }
