@@ -7,13 +7,13 @@ import (
 )
 
 type Resource struct {
-	Id              uint    `gorm:"column:id" json:"id"`
-	OpportunityId   uint    `gorm:"foreignKey:Opportunity;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"opportunity_id"`
-	Qty             int64     `gorm:"column:qty" json:"qty" binding:"required"`
-	Position        string    `gorm:"column:position" json:"position" binding:"required"`
-	Level           string    `gorm:"column:level" json:"level" binding:"required"`
+	Id              uint      `gorm:"column:id" json:"id"`
+	Qty             int64     `gorm:"column:qty" json:"qty"`
+	Position        string    `gorm:"column:position" json:"position"`
+	Level           string    `gorm:"column:level" json:"level"`
 	Ctc             float64   `gorm:"column:ctc" json:"ctc"`
-	ProjectDuration int64     `gorm:"column:project_duration" json:"project_duration" binding:"required"`
+	ProjectDuration int64     `gorm:"column:project_duration" json:"project_duration"`
+	OpportunityId   uint      `gorm:"foreignKey:Opportunity;OnUpdate:CASCADE;OnDelete:CASCADE" json:"opportunity_id"`
 	CreatedAt       time.Time `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt       time.Time `gorm:"column:updated_at" json:"updated_at"`
 }
